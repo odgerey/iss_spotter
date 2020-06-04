@@ -9,8 +9,6 @@
 
 const request = require('request');
 
-const fs = require('fs');
-const myArg = process.argv.slice(2);
 
 
 const fetchMyIP = function(callback) { 
@@ -26,13 +24,9 @@ const fetchMyIP = function(callback) {
     return;
     }
 
-    const result = JSON.parse(body);
-    if (result === undefined) {
-      callback ("Not a valid IP", null)
-    } else {
-      callback (null, result)
-    }
-})
+    const ip = JSON.parse(body).ip;
+      callback (null, ip)
+    });
 };
 
 module.exports = { fetchMyIP };
